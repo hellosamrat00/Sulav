@@ -6,19 +6,19 @@ function Testimonials() {
       image: 'images/img-1.jpg',
       name: 'KEN NORMAN',
       username: '@kennorman',
-      comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deserunt minus debitis illo, accusantium ex atque asperiores veniam culpa fugit! Repellat similique odio, unde iure aut obcaecati alias quasi eius.'
+      comment: 'Absolutely loved the vibe and service at Sulav Hair Studio! My hair has never looked better..'
     },
     {
       image: 'images/img-2.jpg',
       name: 'Liara Karian',
       username: '@liarakarian',
-      comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deserunt minus debitis illo, accusantium ex atque asperiores veniam culpa fugit! Repellat similique odio.'
+      comment: 'Professional, stylish, and super friendly – Sulav Hair Studio is my new go-to!'
     },
     {
       image: 'images/img-3.jpg',
       name: 'Ricky Danial',
       username: '@rickydanial',
-      comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum deserunt minus debitis illo, accusantium ex atque asperiores veniam culpa fugit! Repellat similique odio, unde iure aut obcaecati alias quasi eius.'
+      comment: 'Clean space, skilled hands, and amazing results. Highly recommend Sulav Hair Studio!'
     }
   ];
 
