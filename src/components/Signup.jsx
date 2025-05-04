@@ -43,15 +43,18 @@ function Signup({ setCurrentPage }) {
       });
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem('token', data.access);
+        localStorage.setItem('access_token', data.access);
+        localStorage.setItem('refresh_token', data.refresh);
         localStorage.setItem('user', JSON.stringify(data.user));
+        console.log('User data:', data.user);
         alert('Registration successful!');
         setCurrentPage('home');
         navigate('/');
       } else {
-        setError(data.errors || 'Signup failed');
+        setError(data.errors ? JSON.stringify(data.errors) : 'Signup failed');
       }
     } catch (err) {
+      console.error('Signup error:', err);
       setError('An error occurred. Please try again.');
     }
   };

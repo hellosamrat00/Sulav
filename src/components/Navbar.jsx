@@ -5,7 +5,7 @@ import '../App.css';
 function Navbar({ currentPage, setCurrentPage }) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem('token');
+  const isLoggedIn = !!localStorage.getItem('access_token'); // Updated for JWT
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -17,7 +17,8 @@ function Navbar({ currentPage, setCurrentPage }) {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('access_token'); // Updated for JWT
+    localStorage.removeItem('refresh_token'); // Updated for JWT
     localStorage.removeItem('user');
     setCurrentPage('home');
     setIsOpen(false);

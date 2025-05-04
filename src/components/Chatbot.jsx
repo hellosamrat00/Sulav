@@ -12,21 +12,49 @@ export default function Chatbot() {
 
     const userMessage = { from: 'user', text: input };
     setMessages(prev => [...prev, userMessage]);
+    const bookingKeywords = ['book', 'appointment', 'schedule', 'time slot'];
+    const isBookingRelated = bookingKeywords.some(keyword => 
+      input.toLowerCase().includes(keyword)
+    );
 
     try {
+      const token = localStorage.getItem('access_token');
+      if (isBookingRelated && !token) {
+        setMessages(prev => [
+          ...prev,
+          { from: 'bot', text: 'You need to log in to book an appointment. We need your perosnal information to confirm the booking.' }
+        ]);
+        setInput('');
+        return;
+      }
+
       const response = await fetch('http://localhost:8000/api/ask/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: input })
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+        },
+        body: JSON.stringify({ question: input }),
+        credentials: 'include',
       });
 
-      if (!response.ok) throw new Error('API request failed');
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error('Unauthorized. Please log in again.');
+        }
+        const errorData = await response.json();
+        throw new Error(errorData.response || 'Failed to process your request. Please try again.');
+      }
+
       const data = await response.json();
       const botMessage = { from: 'bot', text: data.response || 'No response from server' };
       setMessages(prev => [...prev, botMessage]);
     } catch (err) {
       console.error('Chatbot error:', err);
-      setMessages(prev => [...prev, { from: 'bot', text: 'Sorry, something went wrong. Please try again.' }]);
+      setMessages(prev => [
+        ...prev,
+        { from: 'bot', text: `Sorry, something went wrong: ${err.message}` }
+      ]);
     }
 
     setInput('');
@@ -34,10 +62,7 @@ export default function Chatbot() {
 
   return (
     <div className="chatbot-container">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="chatbot-toggle"
-      >
+      <button onClick={() => setIsOpen(!isOpen)} className="chatbot-toggle">
         {isOpen ? '✕' : '💬'}
       </button>
       {isOpen && (
@@ -61,10 +86,7 @@ export default function Chatbot() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
             />
-            <button
-              onClick={sendMessage}
-              className="chatbot-send"
-            >
+            <button onClick={sendMessage} className="chatbot-send">
               Send
             </button>
           </div>

@@ -5,22 +5,22 @@ function Services() {
         {
           image: '/images/pic-1.jpg',
           title: 'Hair Styling',
-          description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, magnam.'
+          description: 'From sleek to voluminous, we style your hair to match any vibe or occasion.'
         },
         {
           image: '/images/pic-2.jpg',
           title: 'Beard Trim',
-          description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, magnam.'
+          description: 'Sharp, clean beard trims to keep your look well-groomed and defined.'
         },
         {
           image: '/images/pic-3.jpg',
           title: 'Hair Cut',
-          description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, magnam.'
+          description: 'Precision cuts tailored to your style and face shape for a fresh, clean look.'
         },
         {
           image: '/images/pic-4.jpg',
           title: 'Dry Shampoo',
-          description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, magnam.'
+          description: 'A quick, water-free refresh that leaves your hair looking clean and full of life.'
         }
       ];
       

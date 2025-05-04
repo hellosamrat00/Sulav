@@ -28,7 +28,7 @@ function Profile({ setCurrentPage }) {
 
   useEffect(() => {
     console.log('Profile.js: Checking login status');
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
     if (!token) {
       console.log('Profile.js: No token found, redirecting to /login');
       setCurrentPage('login');

@@ -11,7 +11,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Profile from './components/Profile';
 import Chatbot from './components/Chatbot';
-import AdminDashboard from './pages/AdminDashboard'; // ✅ New import
+import AdminDashboard from './pages/AdminDashboard'; 
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
